@@ -81,4 +81,14 @@ arrange(merged_tidy_data,subject_id)
 write.table(merged_tidy_data, file = "merged_tidy_data.txt", sep = " ", row.names = FALSE, col.names = FALSE)
 
 
+####
+## Create a second, independent tidy data set with the average of each 
+##        variable for each activity and each subject.
+## Group the data by activity, subject
+merged_grouped_data <- group_by(merged_tidy_data,labels,subject_id)
+## Get the average of each variable
+summarised_data <- summarise_each(merged_grouped_data, funs(mean))
+## Write the data out
+write.table(summarised_data, "merged_tidy_data_by_activity_subject.txt", row.names = FALSE)
+####
 
